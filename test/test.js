@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { copy, remove, readJson, pathExists, outputFile } from 'fs-extra'
+import { copy, remove, readJson, pathExists, outputFile, readFile } from 'fs-extra'
 
 import packageReset from '../src'
 
@@ -55,9 +55,24 @@ describe('Delete readme', async () => {
 
 describe('Reset git', async () => {
 	it('should reset .git', async () => {
+		// Create original .git content
+		await outputFile('test/.git/test', 'original')
+		let contents = await readFile('test/.git/test')
+		contents = contents.toString()
+		expect(contents).to.equal('original')
+
+		// Reset
 		await packageReset({
 			...options,
 			git: true,
+			quiet: true,
 		})
+		let exists = await pathExists('test/.git/test')
+		expect(exists).to.equal(false)
+		exists = await pathExists('test/.git/HEAD')
+		expect(exists).to.equal(true)
+
+		// Clean up
+		await remove('test/.git')
 	})
 })

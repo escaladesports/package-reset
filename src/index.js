@@ -3,6 +3,7 @@ import { readJson, outputJson, remove } from 'fs-extra'
 
 import resetPackage from './package'
 import resetReadme from './readme'
+import resetGit from './git'
 
 export default async function(options = {}){
 	options = {
@@ -27,4 +28,9 @@ export default async function(options = {}){
 	}
 
 	await Promise.all(promises)
+
+	// Commit when done
+	if(options.git){
+		await resetGit(options)
+	}
 }

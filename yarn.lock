@@ -1614,6 +1614,10 @@ execa@^0.7.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+exeq@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/exeq/-/exeq-3.0.0.tgz#7f5fb572a433e3a32b5574fc102c4941e9bd5a68"
+
 expand-brackets@^0.1.4:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/expand-brackets/-/expand-brackets-0.1.5.tgz#df07284e342a807cd733ac5af72411e581d1177b"
@@ -2507,10 +2511,6 @@ nan@^2.3.0:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
-
-node-cmd-promise@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/node-cmd-promise/-/node-cmd-promise-1.0.0.tgz#1ec29f8b19841c8ab0332e619a383383b6261cfe"
 
 node-libs-browser@^2.0.0:
   version "2.1.0"
