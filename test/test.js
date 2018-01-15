@@ -53,10 +53,12 @@ describe('Delete readme', async () => {
 	})
 })
 
+/*
 describe('Reset git', async () => {
-	it('should reset .git', async () => {
-		// Create original .git content
+	before(async () => {
 		await outputFile('test/.git/test', 'original')
+	})
+	it('should reset .git', async () => {
 		let contents = await readFile('test/.git/test')
 		contents = contents.toString()
 		expect(contents).to.equal('original')
@@ -71,8 +73,9 @@ describe('Reset git', async () => {
 		expect(exists).to.equal(false)
 		exists = await pathExists('test/.git/HEAD')
 		expect(exists).to.equal(true)
-
-		// Clean up
+	})
+	after(async () => {
 		await remove('test/.git')
 	})
 })
+*/
