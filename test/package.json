@@ -1,0 +1,20 @@
+{
+	"name": "test-name",
+	"version": "0.2.0",
+	"keywords": [
+		"javascript",
+		"node",
+		"package",
+		"reset",
+		"git",
+		"version",
+		"name",
+		"repo"
+	],
+	"author": "Kennedy Rose <krose@escaladesports.com>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/escaladesports/package-reset.git"
+	},
+	"license": "MIT"
+}

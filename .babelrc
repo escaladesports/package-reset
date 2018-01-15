@@ -1,0 +1,19 @@
+{
+	"env": {
+		"es5": {
+			"presets": [
+				"es2015",
+				"stage-3"
+			]
+		},
+		"es6": {
+			"presets": [
+				"es2016",
+				"stage-3"
+			]
+		}
+	},
+	"plugins": [
+		"transform-runtime"
+	]
+}
