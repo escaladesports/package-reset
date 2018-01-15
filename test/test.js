@@ -3,12 +3,19 @@ import { copy, remove, readJson, pathExists, outputFile } from 'fs-extra'
 
 import packageReset from '../src'
 
+const options = {
+	path: 'test/',
+	package: false,
+	git: false,
+	readme: false,
+}
+
 describe('Reset package.json', async () => {
 	let contents
 	before(async () => {
 		await copy('test/package.json', 'test/package-test.json')
 		await packageReset({
-			path: 'test/',
+			...options,
 			package: 'package-test.json',
 		})
 		contents = await readJson('test/package-test.json')
@@ -38,11 +45,19 @@ describe('Delete readme', async () => {
 
 		// Reset
 		await packageReset({
-			path: 'test/',
-			package: false,
+			...options,
+			readme: true,
 		})
 		exists = await pathExists('test/README.md')
 		expect(exists).to.equal(false)
+	})
+})
 
+describe('Reset git', async () => {
+	it('should reset .git', async () => {
+		await packageReset({
+			...options,
+			git: true,
+		})
 	})
 })

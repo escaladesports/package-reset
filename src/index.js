@@ -1,6 +1,9 @@
 import path from 'path'
 import { readJson, outputJson, remove } from 'fs-extra'
 
+import resetPackage from './package'
+import resetReadme from './readme'
+
 export default async function(options = {}){
 	options = {
 		path: './',
@@ -12,42 +15,16 @@ export default async function(options = {}){
 		...options,
 	}
 
+	const promises = []
+
 	// Package.json rewrites
 	if (options.package) {
-		const packagePath = options.path + options.package
-		const content = await readJson(packagePath)
-
-		// Change name
-		if (options.name) {
-			content.name = options.name
-		}
-		else if (options.dirName) {
-			let name = process.cwd()
-			name = path.parse(name)
-			name = name.base
-			content.name = name
-		}
-
-		// Reset version
-		if (options.version) {
-			content.version = options.version
-		}
-
-		// Reset repository
-		if (options.repository === true) {
-			delete content.repository
-		}
-		else if (typeof options.repository === 'string') {
-			content.repository = options.repository
-		}
-
-		await outputJson(packagePath, content)
+		promises.push(resetPackage(options))
 	}
 
 	if(options.readme){
-		let readmePath = options.path + 'README.md'
-		await remove(readmePath)
+		promises.push(resetReadme(options))
 	}
 
-
+	await Promise.all(promises)
 }
